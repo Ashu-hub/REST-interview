@@ -371,6 +371,12 @@ Used for:
 
 # 21. What is Optimistic Locking in REST?
 
+Optimistic Locking is a concurrency control mechanism used to prevent lost updates when multiple clients try to update the same resource simultaneously.
+
+Unlike pessimistic locking, it does not lock the resource. Instead, it checks whether the resource has been modified by someone else before applying the update.
+
+In REST APIs, optimistic locking is typically implemented using ETag and the If-Match header.
+
 The client sends the current version.
 
 ```http
@@ -384,6 +390,13 @@ If the resource has changed:
 ```
 
 Prevents lost updates.
+
+Advantages
+Prevents lost updates
+No database locking
+Better performance than pessimistic locking
+Suitable for REST APIs and microservices
+Works well when conflicts are rare
 
 ---
 
