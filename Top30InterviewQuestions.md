@@ -554,6 +554,48 @@ Pros
 
 ---
 
+# 26. What is CORS?
+**CORS (Cross-Origin Resource Sharing)** is a browser security mechanism that allows or restricts a web page from making requests to a different origin (domain, protocol, or port).
+
+Without CORS, browsers enforce the **Same-Origin Policy (SOP)**, which blocks requests to different origins.
+
+# How CORS Works
+
+## Step 1
+
+Browser sends the request.
+
+```http
+GET /users
+Origin: https://myapp.com
+```
+
+Notice the **Origin** header.
+
+---
+
+## Step 2
+
+Server checks whether this origin is allowed.
+
+If allowed:
+
+```http
+Access-Control-Allow-Origin: https://myapp.com
+```
+
+Browser allows the response.
+
+If not allowed:
+
+No CORS header is returned.
+
+Browser blocks access to the response.
+
+
+---
+---
+
 # 26. What is JWT?
 
 JSON Web Token.
