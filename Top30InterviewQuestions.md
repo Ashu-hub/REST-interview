@@ -426,18 +426,80 @@ URI versioning is the most commonly used.
 
 # 23. What is Pagination?
 
-Instead of returning millions of records:
+Pagination is a technique used to divide a large dataset into smaller, manageable pages instead of returning all records in a single API response.
+
+---
+
+**Why is Pagination Needed?**
+
+Imagine a database with 10 million users.
+
+Without pagination:
 
 ```http
-GET /users?page=2&size=20
+GET /users
 ```
 
-Spring Boot provides:
+The server returns all 10 million records.
 
-```java
-Pageable pageable
+Problem:
+- Slow response
+- High memory consumption
+- Heavy network traffic
+- Poor user experience
+- Increased database load
+
+# With Pagination
+
+Instead, request only a subset of records.
+
+```http
+GET /users?page=0&size=20
+```
+---
+
+Types of Pagination
+1. Offset-Based Pagination (Most Common)
+
+Uses **page number** and **page size**.
+
+### Example
+
+```http
+GET /users?page=2&size=10
 ```
 
+Meaning:
+
+- Page = 2
+- Size = 10
+
+### SQL Query
+
+```sql
+SELECT *
+FROM users
+LIMIT 10 OFFSET 20;
+```
+
+2. Cursor-Based Pagination (Recommended for Large Data)
+
+Instead of page numbers, use a **cursor** (usually the last seen record ID or timestamp).
+
+### Example
+
+```http
+GET /users?cursor=101&limit=20
+```
+
+### SQL Query
+
+```sql
+SELECT *
+FROM users
+WHERE id > 101
+LIMIT 20;
+```
 ---
 
 # 24. Offset vs Cursor Pagination
@@ -468,6 +530,13 @@ Pros
 
 - Faster
 - Better for large datasets
+
+| Feature | Offset Pagination | Cursor Pagination |
+|----------|-------------------|-------------------|
+| Uses | Page Number | Cursor/Last Record |
+| Performance | Slower for large datasets | Very Fast |
+| Jump to Any Page | ✅ Yes | ❌ No |
+| Best For | Admin dashboards | Social media feeds, APIs with large datasets |
 
 ---
 
