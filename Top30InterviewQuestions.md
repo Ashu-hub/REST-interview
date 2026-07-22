@@ -360,7 +360,7 @@ The server returns JSON, XML, etc., based on the header.
 
 # 20. What is ETag?
 
-Entity Tag identifies the version of a resource.
+ETag, or Entity Tag, is an HTTP response header that uniquely identifies the current version of a resource. It is primarily used for HTTP caching and optimistic locking. For caching, the client sends the ETag back in the If-None-Match header, allowing the server to return 304 Not Modified if the resource hasn't changed. For updates, the client uses the If-Match header, and if the resource version has changed, the server returns 412 Precondition Failed to prevent overwriting another user's changes.
 
 Used for:
 
