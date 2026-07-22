@@ -197,6 +197,14 @@ This is **Level 3** of the Richardson Maturity Model.
 ---
 
 # 12. What is Richardson Maturity Model?
+The Richardson Maturity Model (RMM) is a framework proposed by Leonard Richardson to evaluate how closely a web API follows REST architectural principles. It defines four maturity levels (0–3), where each higher level builds on the previous one.
+| Level                              | Characteristics                                                                                                                                             | Example                                                          |
+| ---------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| **Level 0 – The Swamp of POX**     | Single endpoint, usually one HTTP method (typically POST). HTTP is used only as a transport protocol.                                                       | `POST /api` with `"action":"createUser"`                         |
+| **Level 1 – Resources**            | Introduces resources with separate URIs, but still often uses a single HTTP method.                                                                         | `POST /users`, `POST /orders`                                    |
+| **Level 2 – HTTP Verbs**           | Uses HTTP methods correctly (`GET`, `POST`, `PUT`, `PATCH`, `DELETE`) along with appropriate status codes. This is the level most modern REST APIs achieve. | `GET /users/123`, `PUT /users/123`, `DELETE /users/123`          |
+| **Level 3 – Hypermedia (HATEOAS)** | Responses include hyperlinks that tell clients what actions are available next, making the API self-discoverable.                                           | Response contains links such as `"edit"`, `"delete"`, `"orders"` |
+
 
 | Level | Description |
 |--------|-------------|
