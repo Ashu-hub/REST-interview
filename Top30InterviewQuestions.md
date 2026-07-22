@@ -21,12 +21,17 @@ Here, **User** is the resource.
 
 REST has six architectural constraints:
 
-1. Client-Server
-2. Stateless
-3. Cacheable
-4. Uniform Interface
-5. Layered System
-6. Code on Demand (Optional)
+1. Client-Server : The client and server are separated and have distinct responsibilities.
+2. Stateless : Stateless means the server never remembers previous requests. Every request is completely independent.
+3. Cacheable : Responses should indicate whether they can be cached. The client can reuse cached responses until they expire.
+4. Uniform Interface : It standardizes communication between clients and servers.
+   It has 4 principle:
+   a) Resource Identification: Every resource should have a unique URI.
+   b) Resource Representation: The client interacts with a representation of the resource, usually JSON or XML.
+   c) Self-descriptive Messages : Each request and response should contain enough information to understand it.
+   d) HATEOAS : The server tells the client what actions can be performed next.
+6. Layered System: The client does not know whether it is communicating directly with the server or through intermediate layers.
+7. Code on Demand (Optional): The server can send executable code to the client.(REST API do **NOT** use this constraint.
 
 A service must satisfy these constraints to be considered RESTful.
 
