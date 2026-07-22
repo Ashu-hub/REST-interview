@@ -652,6 +652,78 @@ Authorization: Bearer <token>
 > In my Spring Boot microservices, I design resource-oriented APIs using nouns, proper HTTP methods, and appropriate HTTP status codes. The services are stateless and secured using JWT/OAuth2 with an API Gateway. I implement Bean Validation for request validation, centralized exception handling using `@ControllerAdvice`, pagination for large datasets, API versioning, correlation IDs for distributed tracing, OpenAPI/Swagger documentation, and meaningful error responses. For resilience, I use retries, timeouts, and circuit breakers, and for concurrency control I use optimistic locking where applicable.
 
 ---
+31. HTTP HEAD and OPTIONS
+- What is HEAD?
+
+The HEAD method is identical to GET, except that the server returns only the response headers and not the response body.
+
+It is mainly used to retrieve metadata about a resource without downloading the actual content.
+
+- Why Use HEAD?
+    1. Check if a resource exists
+    2. Check file size
+    3. Check Last Modified Date
+    4. Verify Content Type
+ 
+- What is OPTIONS?
+
+The OPTIONS method asks the server:
+
+"What operations are supported on this resource?"
+
+It returns the HTTP methods allowed for the requested resource.
+Example
+
+```HTTP
+Request
+
+OPTIONS /users/101
+
+Response
+
+200 OK
+```
+
+Allow: GET, PUT, DELETE, OPTIONS
+
+Why Use OPTIONS?
+1. Discover Supported Methods
+
+The client can check what operations are allowed before making a request.
+
+2. CORS Preflight Request
+
+This is the most important use case.
+
+Suppose the browser wants to send:
+
+```http
+PUT /users/101
+Authorization: Bearer token
+```
+
+Before sending the PUT request, it sends:
+
+```
+OPTIONS /users/101
+
+Origin: https://myapp.com
+Access-Control-Request-Method: PUT
+```
+Server responds:
+```
+200 OK
+
+Access-Control-Allow-Origin: https://myapp.com
+Access-Control-Allow-Methods: GET, POST, PUT, DELETE
+Access-Control-Allow-Headers: Authorization
+```
+
+If the browser receives approval, it sends the actual PUT request.
+
+This is called the CORS Preflight Request.
+
+---
 
 # Top 10 Must-Prepare REST Questions
 
