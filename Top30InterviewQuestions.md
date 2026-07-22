@@ -249,41 +249,48 @@ urn:isbn:123456
 
 ## Success
 
-| Code | Meaning |
-|------|---------|
-| 200 | OK |
-| 201 | Created |
-| 202 | Accepted |
-| 204 | No Content |
+| Code    | Meaning    | Description                                                                                                          |
+| ------- | ---------- | -------------------------------------------------------------------------------------------------------------------- |
+| **200** | OK         | The request was successful, and the response contains the requested data.                                            |
+| **201** | Created    | A new resource was successfully created (typically returned after a POST request).                                   |
+| **202** | Accepted   | The request has been accepted for processing, but processing is not yet complete (used for asynchronous operations). |
+| **204** | No Content | The request was successful, but there is no response body (commonly returned after DELETE or successful PUT).        |
+
 
 ## Redirection
 
-| Code | Meaning |
-|------|---------|
-| 301 | Moved Permanently |
-| 304 | Not Modified |
+| Code    | Meaning           | Description                                                                                       |
+| ------- | ----------------- | ------------------------------------------------------------------------------------------------- |
+| **301** | Moved Permanently | The requested resource has permanently moved to a new URL. Clients should update their bookmarks. |
+| **304** | Not Modified      | The resource has not changed since the last request. The client should use its cached copy.       |
+
 
 ## Client Errors
 
-| Code | Meaning |
-|------|---------|
-| 400 | Bad Request |
-| 401 | Unauthorized |
-| 403 | Forbidden |
-| 404 | Not Found |
-| 405 | Method Not Allowed |
-| 409 | Conflict |
-| 415 | Unsupported Media Type |
-| 429 | Too Many Requests |
+| Code    | Meaning                | Description                                                                                                           |
+| ------- | ---------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| **400** | Bad Request            | The request is invalid due to malformed syntax, validation errors, or missing required fields.                        |
+| **401** | Unauthorized           | Authentication is required or the provided credentials/token are invalid or expired.                                  |
+| **403** | Forbidden              | The user is authenticated but does not have permission to access the requested resource.                              |
+| **404** | Not Found              | The requested resource does not exist.                                                                                |
+| **405** | Method Not Allowed     | The requested HTTP method (e.g., POST, DELETE) is not supported for the requested resource.                           |
+| **409** | Conflict               | The request conflicts with the current state of the resource (e.g., duplicate email, version conflict).               |
+| **412** | Precondition Failed    | One or more preconditions in the request headers (e.g., `If-Match`) failed. Commonly used with optimistic locking.    |
+| **415** | Unsupported Media Type | The server does not support the request's media type (e.g., sending XML when only JSON is accepted).                  |
+| **422** | Unprocessable Entity   | The request is syntactically correct but contains semantic or business validation errors. Commonly used in REST APIs. |
+| **429** | Too Many Requests      | The client has exceeded the allowed rate limit. Retry after some time.                                                |
+
 
 ## Server Errors
 
-| Code | Meaning |
-|------|---------|
-| 500 | Internal Server Error |
-| 502 | Bad Gateway |
-| 503 | Service Unavailable |
-| 504 | Gateway Timeout |
+| Code    | Meaning               | Description                                                                    |
+| ------- | --------------------- | ------------------------------------------------------------------------------ |
+| **500** | Internal Server Error | An unexpected error occurred on the server.                                    |
+| **501** | Not Implemented       | The server does not support the requested functionality or HTTP method.        |
+| **502** | Bad Gateway           | A gateway or proxy received an invalid response from an upstream server.       |
+| **503** | Service Unavailable   | The server is temporarily unavailable due to maintenance or overload.          |
+| **504** | Gateway Timeout       | A gateway or proxy did not receive a timely response from the upstream server. |
+
 
 ---
 
