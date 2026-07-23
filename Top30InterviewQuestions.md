@@ -481,6 +481,9 @@ SELECT *
 FROM users
 LIMIT 10 OFFSET 20;
 ```
+Meaniing:
+LIMIT 10 → Return 10 rows.
+OFFSET 20 → Skip the first 20 rows.
 
 2. Cursor-Based Pagination (Recommended for Large Data)
 
